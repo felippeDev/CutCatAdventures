@@ -1,6 +1,6 @@
-# Cut Cat Adventures
+# Cute Cat Adventures
 
-Cut Cat Adventures is a new open source plataform game for Windows/Android under development.
+Cute Cat Adventures is a new open source plataform game for Windows/Android under development.
 
 ## Credits
 - Fonts
