@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 
     bool isFacingRight;
     bool isJumping;
+    float playerSpeed;
 
     Animator anim;
     Rigidbody2D rg2d;
@@ -24,56 +25,73 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float x = Input.GetAxisRaw("Horizontal");
-        Vector2 direction = new Vector2(x, 0).normalized;
+        Move(playerSpeed);
+        Flip();
 
-        if (Input.GetAxis("Jump") > 0)
+        // Move left
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetAxis("Horizontal") < 0))
         {
-            if (!isJumping)
-            {
-                Jump();
-            }
+            playerSpeed = -speed;
+        }
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.LeftArrow) || (Input.GetAxis("Horizontal") == 0))
+        {
+            playerSpeed = 0;
         }
 
-        Move(speed, direction);
+        // Move right
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetAxis("Horizontal") > 0))
+        {
+            playerSpeed = speed;
+        }
+        if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.RightArrow) || (Input.GetAxis("Horizontal") == 0))
+        {
+            playerSpeed = 0;
+        }
+
+        // Jump
+        if((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Jump") > 0))
+        {
+            isJumping = true;
+            rg2d.AddForce(new Vector2(rg2d.velocity.x, jump));
+            anim.SetInteger("State", 3);
+        }
     }
 
-    void Move(float speed, Vector2 direction)
+    void Move(float speed)
     {
-        Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
-        Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+        if(playerSpeed < 0 && !isJumping || playerSpeed > 0 && !isJumping)
+        {
+            anim.SetInteger("State", 2);
+        }
 
-        max.x = max.x - 0.225f;
-        min.x = min.x + 0.225f;
+        if(playerSpeed == 0 && !isJumping)
+        {
+            anim.SetInteger("State", 0);
+        }
 
-        max.x = max.x - 0.285f;
-        min.x = min.x + 0.285f;
-
-        Vector2 pos = transform.position;
-
-        pos += direction * speed * Time.deltaTime;
-
-        pos.x = Mathf.Clamp(pos.x, min.x, max.x);
-        pos.y = Mathf.Clamp(pos.y, min.y, max.y);
-
-        transform.position = pos;
+        rg2d.velocity = new Vector3(speed, rg2d.velocity.y, 0);
     }
 
-    void Jump()
+    void Flip()
     {
-        Debug.Log("is jumping!");
-        isJumping = true;
-        rg2d.AddForce(new Vector3(0, jump, 0));
-        anim.SetBool("isJumping", true);
+        if(playerSpeed > 0 && !isFacingRight || playerSpeed < 0 && isFacingRight)
+        {
+            isFacingRight = !isFacingRight;
+
+            Vector3 scale = transform.localScale;
+
+            scale.x *= -1;
+
+            transform.localScale = scale;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collider)
     {
         if (collider.gameObject.tag == "Ground")
         {
-            Debug.Log("is grounded!");
             isJumping = false;
-            anim.SetBool("isJumping", false);
+            anim.SetInteger("State", 0);
         }
     }
 }
