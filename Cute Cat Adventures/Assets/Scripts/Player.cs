@@ -51,9 +51,12 @@ public class Player : MonoBehaviour
         // Jump
         if((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Jump") > 0))
         {
-            isJumping = true;
-            rg2d.AddForce(new Vector2(rg2d.velocity.x, jump));
-            anim.SetInteger("State", 3);
+            if(!isJumping)
+            {
+                isJumping = true;
+                rg2d.AddForce(new Vector2(rg2d.velocity.x, jump));
+                anim.SetInteger("State", 3);
+            }
         }
     }
 
@@ -88,7 +91,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collider)
     {
-        if (collider.gameObject.tag == "Ground")
+        if (collider.gameObject.tag == "Ground" || collider.gameObject.tag == "Crate" || collider.gameObject.tag == "Platform")
         {
             isJumping = false;
             anim.SetInteger("State", 0);
