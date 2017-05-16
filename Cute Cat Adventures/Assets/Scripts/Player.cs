@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
         Move(playerSpeed);
         Flip();
 
-        // Move left
+        // (Keyboards/Joystick) Move left
         if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow) || (Input.GetAxis("Horizontal") < 0))
         {
             playerSpeed = -speed;
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
             playerSpeed = 0;
         }
 
-        // Move right
+        // (Keyboards/Joystick) Move right
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow) || (Input.GetAxis("Horizontal") > 0))
         {
             playerSpeed = speed;
@@ -55,19 +55,41 @@ public class Player : MonoBehaviour
             {
                 isJumping = true;
                 rg2d.AddForce(new Vector2(rg2d.velocity.x, jump));
+            }
+        }
+
+        if (isJumping)
+        {
+            if(rg2d.velocity.y > 0)
+            {
                 anim.SetInteger("State", 3);
+            }
+            else
+            {
+                anim.SetInteger("State", 1);
             }
         }
     }
 
+    // (Mobile) Move left
+    public void MobileMoveLeft()
+    {
+        playerSpeed = -speed;
+    }
+
+    public void MobileMoveRight()
+    {
+        playerSpeed = speed;
+    }
+
     void Move(float speed)
     {
-        if(playerSpeed < 0 && !isJumping || playerSpeed > 0 && !isJumping)
+        if (playerSpeed < 0 && !isJumping || playerSpeed > 0 && !isJumping)
         {
             anim.SetInteger("State", 2);
         }
 
-        if(playerSpeed == 0 && !isJumping)
+        if (playerSpeed == 0 && !isJumping)
         {
             anim.SetInteger("State", 0);
         }
