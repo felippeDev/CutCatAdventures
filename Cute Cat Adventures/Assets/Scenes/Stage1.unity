@@ -457,7 +457,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   jump: 350
-  LivesUIText: {fileID: 519466217}
+  livesUIText: {fileID: 519466217}
 --- !u!1 &127655373
 GameObject:
   m_ObjectHideFlags: 0
@@ -1557,6 +1557,48 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!1001 &440285980
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4826104138284174, guid: f2d250d2effad03429cfc130364b7eb5, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826104138284174, guid: f2d250d2effad03429cfc130364b7eb5, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826104138284174, guid: f2d250d2effad03429cfc130364b7eb5, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826104138284174, guid: f2d250d2effad03429cfc130364b7eb5, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826104138284174, guid: f2d250d2effad03429cfc130364b7eb5, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826104138284174, guid: f2d250d2effad03429cfc130364b7eb5, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826104138284174, guid: f2d250d2effad03429cfc130364b7eb5, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4826104138284174, guid: f2d250d2effad03429cfc130364b7eb5, type: 2}
+      propertyPath: m_RootOrder
+      value: 45
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f2d250d2effad03429cfc130364b7eb5, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &441350714
 Prefab:
   m_ObjectHideFlags: 0
@@ -5130,6 +5172,24 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
+--- !u!1 &1950215140 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1715152151617692, guid: f2d250d2effad03429cfc130364b7eb5,
+    type: 2}
+  m_PrefabInternal: {fileID: 440285980}
+--- !u!114 &1950215141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1950215140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c4fcdf736a19054ab41c49ea39f5934, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  headCollider: {fileID: 2082600143}
+  bodyCollider: {fileID: 2128927543}
 --- !u!1001 &2014498274
 Prefab:
   m_ObjectHideFlags: 0
@@ -5502,6 +5562,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f18dc5ebb516634eb8b02a8220eeea5, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &2082600143 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1589294498551244, guid: f2d250d2effad03429cfc130364b7eb5,
+    type: 2}
+  m_PrefabInternal: {fileID: 440285980}
 --- !u!1 &2099661128
 GameObject:
   m_ObjectHideFlags: 0
@@ -5613,3 +5678,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2128927543 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1065275126898292, guid: f2d250d2effad03429cfc130364b7eb5,
+    type: 2}
+  m_PrefabInternal: {fileID: 440285980}
