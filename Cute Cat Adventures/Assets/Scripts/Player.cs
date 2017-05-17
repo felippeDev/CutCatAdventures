@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -13,6 +14,16 @@ public class Player : MonoBehaviour
 
     Animator anim;
     Rigidbody2D rg2d;
+
+    public Text LivesUIText;
+    int lives;
+    const int MaxLives = 3;
+
+    private void Awake()
+    {
+        lives = MaxLives;
+        LivesUIText.text = lives.ToString();
+    }
 
     // Use this for initialization
     void Start()
@@ -51,11 +62,7 @@ public class Player : MonoBehaviour
         // Jump
         if((Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Jump") > 0))
         {
-            if(!isJumping)
-            {
-                isJumping = true;
-                rg2d.AddForce(new Vector2(rg2d.velocity.x, jump));
-            }
+            Jump();
         }
 
         if (isJumping)
@@ -68,6 +75,15 @@ public class Player : MonoBehaviour
             {
                 anim.SetInteger("State", 1);
             }
+        }
+    }
+
+    public void Jump()
+    {
+        if (!isJumping)
+        {
+            isJumping = true;
+            rg2d.AddForce(new Vector2(rg2d.velocity.x, jump));
         }
     }
 
@@ -116,7 +132,17 @@ public class Player : MonoBehaviour
         if (collider.gameObject.tag == "Ground" || collider.gameObject.tag == "Crate" || collider.gameObject.tag == "Platform")
         {
             isJumping = false;
+
             anim.SetInteger("State", 0);
+        }
+
+        if (collider.gameObject.tag == "Floor")
+        {
+            lives--;
+
+            LivesUIText.text = lives.ToString();
+
+            transform.position = new Vector2(-6, -1);
         }
     }
 }

@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Crate
   - Platform
+  - Score
+  - Floor
   layers:
   - Default
   - TransparentFX
