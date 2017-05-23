@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Coin : MonoBehaviour {
 
-    public GameObject scoreUIText;
+    private GameObject scoreUIText;
 
     // Use this for initialization
     void Start () {
@@ -16,7 +17,12 @@ public class Coin : MonoBehaviour {
         scoreUIText = GameObject.FindGameObjectWithTag("Score");
     }
 
-    private void OnCollisionEnter2D(Collision2D collider)
+    //private void OnCollisionEnter2D(Collision2D collider)
+    //{
+        
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
