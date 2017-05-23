@@ -15,14 +15,14 @@ public class Player : MonoBehaviour
     Animator anim;
     Rigidbody2D rg2d;
 
-    public Text livesUIText;
+    public Text LivesUIText;
     int lives;
-    const int maxLives = 3;
+    const int MaxLives = 3;
 
     private void Awake()
     {
-        lives = maxLives;
-        livesUIText.text = lives.ToString();
+        lives = MaxLives;
+        LivesUIText.text = lives.ToString();
     }
 
     // Use this for initialization
@@ -140,7 +140,7 @@ public class Player : MonoBehaviour
         {
             lives--;
 
-            livesUIText.text = lives.ToString();
+            LivesUIText.text = lives.ToString();
 
             transform.position = new Vector2(-6, -1);
         }
